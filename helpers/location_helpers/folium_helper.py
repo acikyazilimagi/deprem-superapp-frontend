@@ -1,14 +1,10 @@
-import os
+
 from datetime import datetime
 
 import folium
 from folium.plugins import HeatMap
-
-from helpers.http_helpers import http_helper
 from models.GLOBALS import icon_map
-import locale
-#turkish locale
-locale.setlocale(locale.LC_ALL, 'tr_TR.UTF-8')
+
 
 def CreateMap(my_latlong, zoom_start=17, is_marker=False):
     m = folium.Map(my_latlong, zoom_start=zoom_start)
