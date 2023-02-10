@@ -12,7 +12,7 @@ payload = {}
 
 def InitComponents():
     sh.SetInitialStreamlitStates(sections=["global", "first_page"])
-
+    st.set_page_config(layout="wide")
 
 InitComponents()
 
@@ -20,7 +20,7 @@ InitComponents()
 def first_page():
     st.header("Yardım Çağrısında Bulun!")
 
-    folium_static(fig=session_helper.get_session("first_page_map"))
+    folium_static(fig=session_helper.get_session("first_page_map"), width=1400, height=600)
 
     payload["il"] = st.selectbox(
         label="İl [ZORUNLU]", options=session_helper.get_session("province_list"), key="first_page_province",

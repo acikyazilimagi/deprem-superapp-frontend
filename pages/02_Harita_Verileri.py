@@ -8,15 +8,17 @@ from services import redis_service, record_service
 
 def InitComponents():
     sh.SetInitialStreamlitStates(sections=["global", "second_page"])
-
+    st.set_page_config(layout="wide")
 
 def second_page():
     InitComponents()
 
-    folium_static(fig=session_helper.get_session("second_page_map"))
+    st.header(session_helper.get_session('second_page_header'))
+
+    folium_static(fig=session_helper.get_session("second_page_map"),width=1400, height=600)
 
     st.sidebar.selectbox(
-        label="İl", options=session_helper.get_session("province_list"), key="second_page_province",
+        label="İl", options=session_helper.get_session("second_page_province_list"), key="second_page_province",
         on_change=se.second_page_province_changed, index=session_helper.get_session("second_page_province_index"),
     )
 
@@ -25,14 +27,13 @@ def second_page():
         index=session_helper.get_session("second_page_district_index"),
         key="second_page_district", on_change=se.second_page_district_changed
     )
-    st.sidebar.text_input(label="İsim", key="second_page_name")
+    # st.sidebar.text_input(label="İsim", key="second_page_name")
 
     st.sidebar.multiselect(
-        'Neye İhtiyacınız Var?',
-        GLOBALS.NEEDS,
-        GLOBALS.NEEDS[0], key="second_page_needs")
+        'İhtiyaç / Servis',
+        GLOBALS.NEEDS, key="second_page_needs")
 
-    st.sidebar.text_area("Telefon", key="second_page_phone")
+    # st.sidebar.text_area("Telefon", key="second_page_phone")
     st.sidebar.text_area("Not", key="second_page_notes")
 
     col1, col2 = st.sidebar.columns(2)
@@ -46,13 +47,12 @@ def second_page():
                       on_change=se.second_page_end_date_filter_changed,
                       value=st.session_state.second_page_end_date_value)
 
-    col4, col5, col6 = st.sidebar.columns(3, gap="small")
+    col3, col4 = st.sidebar.columns(2)
+
+    with col3:
+        st.button(label="Yardım İhtiyaçlarını Görüntüle", on_click=se.second_page_see_call_record_button_click)
     with col4:
-        st.button("Filtrele", key="second_page_filter_button", on_click=se.second_page_filter_click)
-    with col5:
-        st.button("Filtreyi Temizle", key="second_page_clear_filter_button", on_click=se.second_page_refresh_click)
-    with col6:
-        st.button("Yenile", key="second_page_refresh_button", on_click=se.second_page_refresh_click)
+        st.button(label="Yardım Gönüllülerini Görüntüle", on_click=se.second_page_see_helper_record_button_click)
 
     for rec in sh.GetCallRecordsDetails():
         st.code(rec, language="markdown")

@@ -10,7 +10,7 @@ third_page_payload = {}
 
 def InitComponents():
     sh.SetInitialStreamlitStates(sections=["global", "third_page"])
-
+    st.set_page_config(layout="wide")
 
 InitComponents()
 
@@ -18,7 +18,7 @@ InitComponents()
 def third_page():
     st.header("Umut Ol!")
 
-    folium_static(fig=session_helper.get_session("third_page_map"))
+    folium_static(fig=session_helper.get_session("third_page_map"), width=1400, height=600)
 
     third_page_payload["il"] = st.selectbox(
         label="İl [ZORUNLU]", options=session_helper.get_session("province_list"), key="third_page_province",

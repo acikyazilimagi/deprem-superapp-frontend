@@ -62,10 +62,18 @@ def SetInitialStreamlitStates(sections):
             ssh.set_session("first_page_message_send_date", datetime.now() - timedelta(minutes=5))
 
     if "second_page" in sections:
-        if 'second_page_map' not in st.session_state:
+        if 'second_page_province_list' not in st.session_state:
+            ssh.set_session("second_page_province_list", ["TÜMÜ"] + list(province_district_dict.keys()))
 
-            all_lat_longs = record_service.GetLatLongsForMap()
-            ssh.set_session("second_page_map", fh.CreateMultiMarkerMap(all_lat_longs))
+        if 'second_page_selected_option' not in st.session_state:
+            ssh.set_session('second_page_selected_option', 'caller')
+
+        if 'second_page_header' not in st.session_state:
+            ssh.set_session('second_page_header', GLOBALS.CALLER_MAP_HEADER)
+
+        if 'second_page_map' not in st.session_state:
+            raw_lat_longs = record_service.GetRawLocationDataForMap()
+            ssh.set_session("second_page_map", fh.CreateMultiMarkerMap(raw_data=raw_lat_longs))
 
         if 'second_page_last_call_records' not in st.session_state:
             SetCallRecordsState()
@@ -74,19 +82,14 @@ def SetInitialStreamlitStates(sections):
             ssh.set_session("is_filtered", False)
 
         if 'second_page_province_index' not in st.session_state:
-            ssh.set_session("second_page_province_index",
-                            list(province_district_dict.keys()).index(os.getenv("DEFAULT_PROVINCE")))
-
-            ssh.set_session("second_page_district_index",
-                            province_district_dict[os.getenv("DEFAULT_PROVINCE")].index(os.getenv("DEFAULT_DISTRICT")))
+            ssh.set_session("second_page_province_index", 0)
 
         if 'second_page_district_index' not in st.session_state:
-            ssh.set_session("second_page_district_index",
-                            province_district_dict[os.getenv("DEFAULT_PROVINCE")].index(os.getenv("DEFAULT_DISTRICT")))
+            ssh.set_session("second_page_district_index", 0)
 
         if 'second_page_selectable_districts' not in st.session_state:
             ssh.set_session("second_page_selectable_districts",
-                            province_district_dict[os.getenv("DEFAULT_PROVINCE")])
+                            ["TÜMÜ"])
 
         if 'second_page_start_date_value' not in st.session_state:
             ssh.set_session("second_page_start_date_value", datetime.today())
@@ -147,8 +150,12 @@ def SetCallRecordsState(page_size=GLOBALS.PAGE_SIZE, page=0, province=None, dist
                         end_date=None):
     ssh.set_session("current_page", page)
 
-    last_records = record_service.GetCallRecords(province, district, name, needs, notes, phone, start_date, end_date)
-
+    if ssh.get_session('second_page_selected_option') == 'caller':
+        last_records = record_service.GetCallRecords(province, district, name, needs, notes, phone, start_date,
+                                                     end_date)
+    else:
+        last_records = record_service.GetHelperRecords(province, district, name, needs, notes, phone, start_date,
+                                                       end_date)
     last_records_list = record_service.FillCallRecordString(
         last_records[page * page_size:(page * page_size) + page_size])
 

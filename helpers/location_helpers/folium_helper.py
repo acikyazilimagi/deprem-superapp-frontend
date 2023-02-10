@@ -31,9 +31,15 @@ def CreateHeatMap(lat_long_list=None, zoom_start=5, is_marker=False):
     return density_map
 
 
-def CreateMultiMarkerMap(lat_longs):
+def CreateMultiMarkerMap(lat_longs=None, raw_data=None):
+
     m = CreateDefaultMap(zoom_start=5)
-    for loc in lat_longs:
-        folium.Marker(loc).add_to(m)
+    if raw_data is not None:
+        # Bahadır
+        pass
+
+    if lat_longs is not None:
+        for loc in lat_longs:
+            folium.Marker(loc).add_to(m)
 
     return m

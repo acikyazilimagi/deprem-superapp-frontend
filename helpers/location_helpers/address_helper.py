@@ -32,8 +32,6 @@ def SetAddressFields(page, current_lat_long=None, current_province=None, current
                      current_address=None):
     province_district_dict = GetProvinceDistrictDict()
 
-
-
     if current_lat_long is not None:
         ssh.set_session(f"{page}_latitude", str(current_lat_long[0]))
         ssh.set_session(f"{page}_longitude", str(current_lat_long[1]))
@@ -41,13 +39,14 @@ def SetAddressFields(page, current_lat_long=None, current_province=None, current
 
     if current_province is not None:
         ssh.set_session(f"{page}_province", current_province)
-        ssh.set_session("first_page_selectable_districts",
+        ssh.set_session(f"{page}_selectable_districts",
                         np.array(
                             province_district_dict[current_province]))
 
     if current_district is not None:
-        current_district_idx = province_district_dict[current_province].index(current_district)
+        ssh.set_session(f"{page}_district", current_district)
+#        current_district_idx = province_district_dict[current_province].index(current_district)
 
-        ssh.set_session(f"{page}_district_index", current_district_idx)
+        # ssh.set_session(f"{page}_district_index", current_district_idx)
     if current_address is not None:
         ssh.set_session(f"{page}_address", current_address)

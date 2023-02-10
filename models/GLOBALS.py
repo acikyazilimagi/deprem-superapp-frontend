@@ -136,9 +136,12 @@ PROVINCE_DISTRICT_DICT = {
     "DİYARBAKIR": ["BAĞLAR", "BİSMİL", "ÇERMİK", "ÇINAR", "ÇÜNGÜŞ", "DİCLE", "EĞİL", "ERGANİ", "HANİ", "HAZRO",
                    "KAYAPINAR", "KOCAKÖY", "KULP", "LİCE", "SİLVAN", "SUR", "YENİŞEHİR"]}
 
-CALL_DATA_CACHE_KEY = "CALL_DATA"
+CALLER_DATA_CACHE_KEY = "CALLER_DATA"
+HELPER_DATA_CACHE_KEY = "HELPER_DATA"
 NEEDS = ['Göçük Altındayım', 'İlaç', 'Malzeme ulaşımı', 'Hastane', 'Konaklama', 'Elektrik', 'Yemek', 'Erzak',
          'Deprem alanıdan ayrılma',
          'Yardim tırı', 'Barınma', 'Yakıt', 'Ulaşım', 'Pet nakil', 'İş makinesi operatörü', 'Vinç operatörü',
          'Araç yardımı', 'Giyim', 'Diğer']
 PAGE_SIZE = 30
+CALLER_MAP_HEADER="YARDIM ÇAĞRILARI"
+HELPER_MAP_HEADER="YARDIM NOKTALARI"
