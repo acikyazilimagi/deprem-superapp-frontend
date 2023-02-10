@@ -34,7 +34,7 @@ def second_page():
         GLOBALS.NEEDS, key="second_page_needs")
 
     # st.sidebar.text_area("Telefon", key="second_page_phone")
-    st.sidebar.text_area("Not", key="second_page_notes")
+    st.sidebar.text_area("bilgiler", key="second_page_notes")
 
     col1, col2 = st.sidebar.columns(2)
 
