@@ -1,9 +1,9 @@
 from helpers.streamlit_helpers import streamlit_helper as sh, streamlit_events as se, \
     streamlit_session_helper as session_helper
-from pages.second_page import second_page
 import streamlit as st
 from streamlit_folium import folium_static
 from dotenv import load_dotenv
+from models import GLOBALS
 
 load_dotenv()
 
@@ -22,13 +22,6 @@ def first_page():
 
     folium_static(fig=session_helper.get_session("first_page_map"))
 
-    # payload["lat"] = st.text_input("Enlem (Latitude) [ZORUNLU]", key="first_page_latitude")
-
-    # payload["lon"] = st.text_input("Boylam (Longitude) [ZORUNLU]", key="first_page_longitude")
-
-    # st.button("Enlem ve Boylam'a göre Arama Yap", key="first_page_lat_long_button",
-    #           on_click=se.first_page_on_lat_long_button_clicked)
-
     payload["il"] = st.selectbox(
         label="İl [ZORUNLU]", options=session_helper.get_session("province_list"), key="first_page_province",
         on_change=se.first_page_province_changed, index=session_helper.get_session("first_page_province_index"),
@@ -42,11 +35,8 @@ def first_page():
 
     payload["gereksinimler"] = st.multiselect(
         'Neye İhtiyacınız Var?',
-        ['Göçük Altındayım', 'İlaç', 'Malzeme ulaşımı', 'Hastane', 'Konaklama', 'Elektrik', 'Yemek', 'Erzak',
-         'Deprem alanıdan ayrılma',
-         'Yardim tırı', 'Barınma', 'Yakıt', 'Ulaşım', 'Pet nakil', 'İş makinesi operatörü', 'Vinç operatörü',
-         'Araç yardımı', 'Giyim', 'Diğer'],
-        ['Göçük Altındayım'])
+        GLOBALS.NEEDS,
+        GLOBALS.NEEDS[0])
 
     payload["adres"] = st.text_area(
         label="Adres [ZORUNLU]", key='first_page_address', on_change=se.first_page_address_changed
@@ -54,11 +44,15 @@ def first_page():
 
     st.checkbox(label="Adresi benim için otomatik doldur", key="first_page_is_address_autofill", value=True)
 
+    payload["isim"] = st.text_input(
+        label="İsim [ZORUNLU]"
+    )
+
     payload["telefon"] = st.text_input(
         label="Telefon numarası [OPSİYONEL]"
     )
 
-    payload["not"] = st.text_area(
+    payload["notlar"] = st.text_area(
         label="NOT [OPSİYONEL]"
     )
     st.button("Gönder", key="first_page_submit_button", on_click=se.first_page_on_submit_button_click, args=(payload,))
@@ -66,7 +60,7 @@ def first_page():
     if session_helper.get_session("first_page_is_success"):
         st.success('Mesajınız alındı!', icon="✅")
     if session_helper.get_session("first_page_is_error"):
-        st.error(session_helper.get_session("first_page_is_error_message"), icon="🚨")
+        st.error(session_helper.get_session("first_page_error_message"), icon="🚨")
 
 
 first_page()
