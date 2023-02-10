@@ -4,6 +4,7 @@ import folium
 from folium.plugins import HeatMap
 
 from helpers.http_helpers import http_helper
+from models.GLOBALS import icon_map
 
 
 def CreateMap(my_latlong, zoom_start=17, is_marker=False):
@@ -31,15 +32,87 @@ def CreateHeatMap(lat_long_list=None, zoom_start=5, is_marker=False):
     return density_map
 
 
-def CreateMultiMarkerMap(lat_longs=None, raw_data=None):
+def CreateMultiMarkerMap(raw_data=None):
 
     m = CreateDefaultMap(zoom_start=5)
     if raw_data is not None:
-        # Bahadır
-        pass
+        for i in range(len(raw_data)):
+            lat,lon = raw_data[i]["lat"],raw_data[i]["lon"]
+            #if raw data does not have gereksinimler
+            if "gereksinimler" not in raw_data[i]:
+                a = "servis"
+            else:
+                a = "gereksinimler"
 
-    if lat_longs is not None:
-        for loc in lat_longs:
-            folium.Marker(loc).add_to(m)
+            if "zaman" not in raw_data[i]:
+                popup_html_table = """
+                <table>
+                    <tr>
+                        <th>il: </th>
+                        <td>""" + str(raw_data[i]["il"]) + """</td>
+                    </tr>
+                    <tr>
+                        <th>ilce: </th>
+                        <td>""" + str(raw_data[i]["ilce"]) + """</td>
+                    </tr>
+                    <tr>
+                        <th>adres: </th>
+                        <td>""" + str(raw_data[i]["adres"]) + """</td>
+                    </tr>
+                    <tr>
+                        <th>servisler: </th>
+                        <td>""" + str(" ".join(raw_data[i][a])) + """</td>
+                    </tr>
+                    <tr>
+                        <th>telefon: </th>
+                        <td>""" + str(raw_data[i]["telefon"]) + """</td>
+                    </tr>
+                    <tr>
+                        <th>notlar</th>
+                        <td>""" + str(raw_data[i]["notlar"]) + """</td>
+                    </tr>
+                </table>"""
+            else:
+                popup_html_table = """
+                <table>
+                    <tr>
+                        <th>il: </th>
+                        <td>""" + str(raw_data[i]["il"]) + """</td>
+                    </tr>
+                    <tr>
+                        <th>ilce: </th>
+                        <td>""" + str(raw_data[i]["ilce"]) + """</td>
+                    </tr>
+                    <tr>
+                        <th>adres: </th>
+                        <td>""" + str(raw_data[i]["adres"]) + """</td>
+                    </tr>
+                    <tr>
+                        <th>gereksinimler: </th>
+                        <td>""" + str(" ".join(raw_data[i][a])) + """</td>
+                    </tr>
+                    <tr>
+                        <th>telefon: </th>
+                        <td>""" + str(raw_data[i]["telefon"]) + """</td>
+                    </tr>
+                    <tr>
+                        <th>notlar</th>
+                        <td>""" + str(raw_data[i]["notlar"]) + """</td>
+                    </tr>
+                    <tr>
+                        <th>zaman: </th>
+                        <td>""" + str(raw_data[i]["zaman"]) + """</td>
+                    </tr>
+                </table>"""
+
+            icon_list = [icon_map[x] for x in raw_data[i][a]]
+
+            # add hover text
+            icon_person = folium.Icon(icon='person', prefix='fa',color='red')
+            icon_house = folium.Icon(icon='home', prefix='fa')
+            if a == "gereksinimler":
+                folium.Marker([lat, lon], popup=popup_html_table,tooltip="İhtiyaçlar:"+" ".join(icon_list),icon=icon_person).add_to(m)
+            else:
+                folium.Marker([lat, lon], popup=popup_html_table,tooltip="Servisler:"+" ".join(icon_list),icon=icon_house).add_to(m)
 
     return m
