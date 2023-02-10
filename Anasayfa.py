@@ -22,45 +22,45 @@ def first_page():
 
     folium_static(fig=session_helper.get_session("first_page_map"), width=1400, height=600)
 
-    payload["il"] = st.selectbox(
+    payload["il"] = st.sidebar.selectbox(
         label="İl [ZORUNLU]", options=session_helper.get_session("province_list"), key="first_page_province",
         on_change=se.first_page_province_changed, index=session_helper.get_session("first_page_province_index"),
     )
 
-    payload["ilce"] = st.selectbox(
+    payload["ilce"] = st.sidebar.selectbox(
         label="İlçe [ZORUNLU]", options=session_helper.get_session("first_page_selectable_districts"),
         index=session_helper.get_session("first_page_district_index"),
         key="first_page_district", on_change=se.first_page_district_changed
     )
 
-    payload["gereksinimler"] = st.multiselect(
+    payload["gereksinimler"] = st.sidebar.multiselect(
         'Neye İhtiyacınız Var?',
         GLOBALS.NEEDS,
         GLOBALS.NEEDS[0])
 
-    payload["adres"] = st.text_area(
+    payload["adres"] = st.sidebar.text_area(
         label="Adres [ZORUNLU]", key='first_page_address', on_change=se.first_page_address_changed
     )
 
-    st.checkbox(label="Adresi benim için otomatik doldur", key="first_page_is_address_autofill", value=True)
+    st.sidebar.checkbox(label="Adresi benim için otomatik doldur", key="first_page_is_address_autofill", value=True)
 
-    payload["isim"] = st.text_input(
+    payload["isim"] = st.sidebar.text_input(
         label="İsim [ZORUNLU]"
     )
 
-    payload["telefon"] = st.text_input(
+    payload["telefon"] = st.sidebar.text_input(
         label="Telefon numarası [OPSİYONEL]"
     )
 
-    payload["notlar"] = st.text_area(
+    payload["notlar"] = st.sidebar.text_area(
         label="NOT [OPSİYONEL]"
     )
-    st.button("Gönder", key="first_page_submit_button", on_click=se.first_page_on_submit_button_click, args=(payload,))
+    st.sidebar.button("Gönder", key="first_page_submit_button", on_click=se.first_page_on_submit_button_click, args=(payload,))
 
     if session_helper.get_session("first_page_is_success"):
-        st.success('Mesajınız alındı!', icon="✅")
+        st.sidebar.success('Mesajınız alındı!', icon="✅")
     if session_helper.get_session("first_page_is_error"):
-        st.error(session_helper.get_session("first_page_error_message"), icon="🚨")
+        st.sidebar.error(session_helper.get_session("first_page_error_message"), icon="🚨")
 
 
 first_page()

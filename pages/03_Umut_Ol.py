@@ -20,45 +20,45 @@ def third_page():
 
     folium_static(fig=session_helper.get_session("third_page_map"), width=1400, height=600)
 
-    third_page_payload["il"] = st.selectbox(
+    third_page_payload["il"] = st.sidebar.selectbox(
         label="İl [ZORUNLU]", options=session_helper.get_session("province_list"), key="third_page_province",
         on_change=se.third_page_province_changed, index=session_helper.get_session("third_page_province_index"),
     )
 
-    third_page_payload["ilce"] = st.selectbox(
+    third_page_payload["ilce"] = st.sidebar.selectbox(
         label="İlçe [ZORUNLU]", options=session_helper.get_session("third_page_selectable_districts"),
         index=session_helper.get_session("third_page_district_index"),
         key="third_page_district", on_change=se.third_page_district_changed
     )
 
-    third_page_payload["servis"] = st.multiselect(
+    third_page_payload["servis"] = st.sidebar.multiselect(
         'Şu Konularda Yardım Edebilirim:',
         GLOBALS.NEEDS,
         GLOBALS.NEEDS[0])
 
-    third_page_payload["adres"] = st.text_area(
+    third_page_payload["adres"] = st.sidebar.text_area(
         label="Adres [ZORUNLU]", key='third_page_address', on_change=se.third_page_address_changed
     )
 
-    st.checkbox(label="Adresi benim için otomatik doldur", key="third_page_is_address_autofill", value=True)
+    st.sidebar.checkbox(label="Adresi benim için otomatik doldur", key="third_page_is_address_autofill", value=True)
 
-    third_page_payload["isim"] = st.text_input(
+    third_page_payload["isim"] = st.sidebar.text_input(
         label="İsim [ZORUNLU]"
     )
 
-    third_page_payload["telefon"] = st.text_input(
+    third_page_payload["telefon"] = st.sidebar.text_input(
         label="Telefon numarası [OPSİYONEL]"
     )
 
-    third_page_payload["notlar"] = st.text_area(
+    third_page_payload["notlar"] = st.sidebar.text_area(
         label="NOT [OPSİYONEL]"
     )
-    st.button("Gönder", key="third_page_submit_button", on_click=se.third_page_on_submit_button_click, args=(third_page_payload,))
+    st.sidebar.button("Gönder", key="third_page_submit_button", on_click=se.third_page_on_submit_button_click, args=(third_page_payload,))
 
     if session_helper.get_session("third_page_is_success"):
-        st.success('Mesajınız alındı!', icon="✅")
+        st.sidebar.success('Mesajınız alındı!', icon="✅")
     if session_helper.get_session("third_page_is_error"):
-        st.error(session_helper.get_session("third_page_error_message"), icon="🚨")
+        st.sidebar.error(session_helper.get_session("third_page_error_message"), icon="🚨")
 
 
 third_page()

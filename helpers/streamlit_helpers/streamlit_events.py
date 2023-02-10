@@ -50,23 +50,20 @@ def first_page_address_changed():
 
 
 def first_page_on_submit_button_click(payload):
-    payload["lat"] = session_helper.get_session("first_page_latitude")
-    payload["lon"] = session_helper.get_session("first_page_longitude")
-    # print(payload)
-
-    response = record_service.CreateCallRecord(payload)
-
-    if response is not None:
-        sh.PopupSuccess("first_page")
-    else:
-        sh.PopupError("first_page", "Kaydınız eklenemedi! Lütfen zorunlu alanları konrol edin ve tekrar deneyin!")
-
-    """
     diff_seconds = (datetime.now() - session_helper.get_session("first_page_message_send_date")).total_seconds()
-    if diff_seconds > 120:
-        if sh.ValidatePayload(payload):
-            payload["zaman"] = datetime.now()
-    """
+    if diff_seconds > 30:
+        payload["lat"] = session_helper.get_session("first_page_latitude")
+        payload["lon"] = session_helper.get_session("first_page_longitude")
+
+        response = record_service.CreateCallRecord(payload)
+
+        if response is not None:
+            sh.PopupSuccess("first_page")
+            session_helper.set_session("first_page_message_send_date", datetime.now())
+        else:
+            sh.PopupError("first_page", "Kaydınız eklenemedi! Lütfen zorunlu alanları konrol edin ve tekrar deneyin!")
+    else:
+        sh.PopupError("first_page", "Bu kadar sık talep gönderemezsiniz! Lütfen 30 saniye içinde tekrar deneyin!")
 
 
 def second_page_province_changed():
@@ -119,7 +116,8 @@ def second_page_filter_click():
 
     # print([[res["lat"], res["lon"]]for res in session_helper.get_session("second_page_last_call_records_raw")])
 
-    session_helper.set_session("second_page_map", fh.CreateMultiMarkerMap(raw_data=session_helper.get_session("second_page_last_call_records_raw")))
+    session_helper.set_session("second_page_map", fh.CreateMultiMarkerMap(
+        raw_data=session_helper.get_session("second_page_last_call_records_raw")))
     """
     record_ids = ','.join([str(i[7]) for i in last_records])
 
@@ -175,7 +173,8 @@ def second_page_see_call_record_button_click():
 
     # print([[res["lat"], res["lon"]]for res in session_helper.get_session("second_page_last_call_records_raw")])
 
-    session_helper.set_session("second_page_map", fh.CreateMultiMarkerMap(raw_data =  session_helper.get_session("second_page_last_call_records_raw")))
+    session_helper.set_session("second_page_map", fh.CreateMultiMarkerMap(
+        raw_data=session_helper.get_session("second_page_last_call_records_raw")))
     """
     record_ids = ','.join([str(i[7]) for i in last_records])
 
@@ -250,19 +249,17 @@ def third_page_address_changed():
 
 
 def third_page_on_submit_button_click(payload):
-    payload["lat"] = session_helper.get_session("third_page_latitude")
-    payload["lon"] = session_helper.get_session("third_page_longitude")
-
-    response = record_service.CreateHelperRecord(payload)
-
-    if response is not None:
-        sh.PopupSuccess("third_page")
-    else:
-        sh.PopupError("third_page", "Kaydınız eklenemedi! Lütfen zorunlu alanları konrol edin ve tekrar deneyin!")
-
-    """
     diff_seconds = (datetime.now() - session_helper.get_session("third_page_message_send_date")).total_seconds()
-    if diff_seconds > 120:
-        if sh.ValidatePayload(payload):
-            payload["zaman"] = datetime.now()
-    """
+    if diff_seconds > 30:
+        payload["lat"] = session_helper.get_session("third_page_latitude")
+        payload["lon"] = session_helper.get_session("third_page_longitude")
+
+        response = record_service.CreateHelperRecord(payload)
+
+        if response is not None:
+            sh.PopupSuccess("third_page")
+            session_helper.set_session("third_page_message_send_date", datetime.now())
+        else:
+            sh.PopupError("third_page", "Kaydınız eklenemedi! Lütfen zorunlu alanları konrol edin ve tekrar deneyin!")
+    else:
+        sh.PopupError("third_page", "Bu kadar sık talep gönderemezsiniz! Lütfen 30 saniye içinde tekrar deneyin!")
