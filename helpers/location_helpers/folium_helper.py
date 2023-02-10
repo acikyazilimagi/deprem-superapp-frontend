@@ -109,7 +109,7 @@ def CreateMultiMarkerMap(raw_data=None):
                     datetime.strptime(raw_data[i]["zaman"], '%Y-%m-%dT%H:%M:%S.%f').strftime("%B %d, %H:%M:%S")) + """</td>
                         </tr>
                         <tr>
-                            <th>goole konum: </th>
+                            <th>google konum: </th>
                             <td><a target="_blank" href=""" + str(
                     f"http://maps.google.com/?ll={raw_data[i]['lat']},{raw_data[i]['lon']}") + """>google maps link</a></td>
                         </tr>
