@@ -5,7 +5,6 @@ import folium
 from folium.plugins import HeatMap
 from models.GLOBALS import icon_map
 
-
 def CreateMap(my_latlong, zoom_start=17, is_marker=False):
     m = folium.Map(my_latlong, zoom_start=zoom_start)
     if is_marker:
