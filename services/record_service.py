@@ -159,8 +159,11 @@ Notlar: {rec["notlar"]}
 
 
 def GetRawLocationDataForMap(province=None, district=None, name=None, needs=None, notes=None, start_date=None,
-                             end_date=None):
+                             end_date=None, is_first_time = False):
     call_record_result = None
+    if is_first_time:
+        province = "HATAY"
+
     if session_helper.get_session('second_page_selected_option') == "caller":
         call_record_result = GetCallRecords(province, district, name, needs, notes, start_date, end_date)
     else:

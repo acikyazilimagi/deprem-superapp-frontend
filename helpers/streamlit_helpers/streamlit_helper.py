@@ -72,7 +72,7 @@ def SetInitialStreamlitStates(sections):
             ssh.set_session('second_page_header', GLOBALS.CALLER_MAP_HEADER)
 
         if 'second_page_map' not in st.session_state:
-            raw_lat_longs = record_service.GetRawLocationDataForMap()
+            raw_lat_longs = record_service.GetRawLocationDataForMap(is_first_time=True)
             ssh.set_session("second_page_map", fh.CreateMultiMarkerMap(raw_data=raw_lat_longs))
 
         if 'second_page_last_call_records' not in st.session_state:
@@ -82,7 +82,7 @@ def SetInitialStreamlitStates(sections):
             ssh.set_session("is_filtered", False)
 
         if 'second_page_province_index' not in st.session_state:
-            ssh.set_session("second_page_province_index", 0)
+            ssh.set_session("second_page_province_index", list(province_district_dict).index("HATAY")+1)
 
         if 'second_page_district_index' not in st.session_state:
             ssh.set_session("second_page_district_index", 0)
