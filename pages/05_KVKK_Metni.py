@@ -1,10 +1,7 @@
 import base64
 import io
 import os
-import csv
-
 import pandas as pd
-import requests
 import streamlit as st
 
 from helpers.http_helpers import http_helper
@@ -30,7 +27,7 @@ KVKK
 """)
 
 url = os.getenv("API_BASE_ENDPOINT") + os.getenv("API_GET_CALL_MAP_DATA_ENDPOINT")
-response = http_helper.send_request(url, method="POST",body_params={})
+response = http_helper.send_request(url, method="POST", body_params={})
 
 data = response.json()
 df = pd.DataFrame(data)
@@ -45,7 +42,7 @@ href = f'<a href="data:file/csv;base64,{b64}" download="myfilename.csv">yardima 
 st.markdown(href, unsafe_allow_html=True)
 
 url2 = os.getenv("API_BASE_ENDPOINT") + os.getenv("API_GET_HELPER_MAP_DATA_ENDPOINT")
-response2 = http_helper.send_request(url2, method="POST",body_params={})
+response2 = http_helper.send_request(url2, method="POST", body_params={})
 
 data2 = response2.json()
 df2 = pd.DataFrame(data2)

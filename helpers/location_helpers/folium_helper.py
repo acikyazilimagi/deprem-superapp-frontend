@@ -1,6 +1,5 @@
 
 from datetime import datetime
-
 import folium
 from folium.plugins import HeatMap
 from models.GLOBALS import icon_map
@@ -36,7 +35,6 @@ def CreateMultiMarkerMap(raw_data=None):
     if raw_data is not None:
         for i in range(len(raw_data)):
             lat,lon = raw_data[i]["lat"],raw_data[i]["lon"]
-            #if raw data does not have gereksinimler
             if "gereksinimler" not in raw_data[i]:
                 a = "servis"
             else:

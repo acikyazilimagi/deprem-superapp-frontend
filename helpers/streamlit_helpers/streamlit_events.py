@@ -2,8 +2,6 @@ from helpers.streamlit_helpers import streamlit_session_helper as session_helper
 from helpers.location_helpers import address_helper as ah
 import numpy as np
 from datetime import datetime, timedelta
-
-from helpers.streamlit_helpers.streamlit_helper import SetCallRecordsState
 from models import GLOBALS
 from services import record_service
 from helpers.location_helpers import folium_helper as fh
@@ -35,18 +33,6 @@ def first_page_address_changed():
             current_lat_long, current_province, current_district, current_address = ah.GetCurrentLocationInfo(address)
 
             ah.SetAddressFields("first_page", current_lat_long, current_province, current_district, current_address)
-    """
-        if len(st.session_state['address']) > 5:
-        my_province, my_district, my_open_address, my_latlong = ah.GetCurrentLocationInfo(
-            address=st.session_state.address)
-        if my_latlong is not None and len(my_latlong) == 2:
-            if not st.session_state.is_address_autofill:
-                my_open_address = None
-            sh.SetAddressFields(my_province, my_district, my_latlong, my_open_address)
-
-    :return:
-    """
-    pass
 
 
 def first_page_on_submit_button_click(payload):
@@ -114,20 +100,8 @@ def second_page_filter_click():
     sh.SetCallRecordsState(page_size=GLOBALS.PAGE_SIZE, province=il, district=ilce, name=isim, needs=gereksinimler,
                            notes=notlar, phone=telefon, start_date=baslangic_tarihi, end_date=bitis_tarihi)
 
-    # print([[res["lat"], res["lon"]]for res in session_helper.get_session("second_page_last_call_records_raw")])
-
     session_helper.set_session("second_page_map", fh.CreateMultiMarkerMap(
         raw_data=session_helper.get_session("second_page_last_call_records_raw")))
-    """
-    record_ids = ','.join([str(i[7]) for i in last_records])
-
-    st.session_state.province_record_counts_str = sh.GetProvinceRecordCounts(record_ids)
-    """
-
-
-def second_page_refresh_click():
-    pass
-
 
 def second_page_pager_button_click(i):
     il, ilce, isim, baslangic_tarihi, bitis_tarihi, gereksinimler, telefon, notlar = __get_second_page_current_field_values()
@@ -171,19 +145,8 @@ def second_page_see_call_record_button_click():
     sh.SetCallRecordsState(page_size=GLOBALS.PAGE_SIZE, province=il, district=ilce, name=isim, needs=gereksinimler,
                            notes=notlar, phone=telefon, start_date=baslangic_tarihi, end_date=bitis_tarihi)
 
-    # print([[res["lat"], res["lon"]]for res in session_helper.get_session("second_page_last_call_records_raw")])
-
     session_helper.set_session("second_page_map", fh.CreateMultiMarkerMap(
         raw_data=session_helper.get_session("second_page_last_call_records_raw")))
-    """
-    record_ids = ','.join([str(i[7]) for i in last_records])
-
-    st.session_state.province_record_counts_str = sh.GetProvinceRecordCounts(record_ids)
-    """
-
-    # all_lat_longs = record_service.GetLatLongsForMap()
-    # session_helper.set_session("second_page_map", fh.CreateMultiMarkerMap(all_lat_longs))
-    # SetCallRecordsState()
 
 
 def second_page_see_helper_record_button_click():
@@ -195,17 +158,8 @@ def second_page_see_helper_record_button_click():
     sh.SetCallRecordsState(page_size=GLOBALS.PAGE_SIZE, province=il, district=ilce, name=isim, needs=gereksinimler,
                            notes=notlar, phone=telefon, start_date=baslangic_tarihi, end_date=bitis_tarihi)
 
-    # print([[res["lat"], res["lon"]]for res in session_helper.get_session("second_page_last_call_records_raw")])
-
     session_helper.set_session("second_page_map", fh.CreateMultiMarkerMap(
         raw_data=session_helper.get_session("second_page_last_call_records_raw")))
-    """
-    
-    session_helper.set_session('second_page_selected_option', 'helper')
-    all_lat_longs = record_service.GetLatLongsForMap()
-    session_helper.set_session("second_page_map", fh.CreateMultiMarkerMap(all_lat_longs))
-    SetCallRecordsState()
-    """
 
 
 def third_page_province_changed():
@@ -234,18 +188,6 @@ def third_page_address_changed():
             current_lat_long, current_province, current_district, current_address = ah.GetCurrentLocationInfo(address)
 
             ah.SetAddressFields("third_page", current_lat_long, current_province, current_district, current_address)
-    """
-        if len(st.session_state['address']) > 5:
-        my_province, my_district, my_open_address, my_latlong = ah.GetCurrentLocationInfo(
-            address=st.session_state.address)
-        if my_latlong is not None and len(my_latlong) == 2:
-            if not st.session_state.is_address_autofill:
-                my_open_address = None
-            sh.SetAddressFields(my_province, my_district, my_latlong, my_open_address)
-
-    :return:
-    """
-    pass
 
 
 def third_page_on_submit_button_click(payload):

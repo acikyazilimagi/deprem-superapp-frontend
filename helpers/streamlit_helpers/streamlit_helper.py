@@ -1,12 +1,9 @@
 import streamlit as st
-
-from helpers.http_helpers import http_helper
 from helpers.location_helpers import folium_helper as fh
 from helpers.streamlit_helpers import streamlit_session_helper as ssh
 from helpers.location_helpers import address_helper as ah
 import os
 from datetime import datetime, timedelta
-
 from models import GLOBALS
 from services import record_service
 
@@ -82,7 +79,7 @@ def SetInitialStreamlitStates(sections):
             ssh.set_session("is_filtered", False)
 
         if 'second_page_province_index' not in st.session_state:
-            ssh.set_session("second_page_province_index", list(province_district_dict).index("HATAY")+1)
+            ssh.set_session("second_page_province_index", list(province_district_dict).index("HATAY") + 1)
 
         if 'second_page_district_index' not in st.session_state:
             ssh.set_session("second_page_district_index", 0)
@@ -173,7 +170,3 @@ def PopupError(page, error_message):
 def PopupSuccess(page):
     ssh.set_session(f"{page}_is_success", True)
     ssh.set_session(f"{page}_is_error", False)
-
-
-def SetCallDataRecordStates():
-    pass

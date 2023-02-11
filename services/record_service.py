@@ -1,5 +1,4 @@
 import os
-import json
 from models import GLOBALS
 from services.redis_service import RedisService
 from helpers.streamlit_helpers import streamlit_session_helper as session_helper, streamlit_helper as sh
@@ -52,7 +51,6 @@ def CreateCallRecord(payload):
 
 def CreateHelperRecord(payload):
     response = None
-    # print(payload)
     if ValidateHelperDataPayload(payload):
         url = os.getenv("API_BASE_ENDPOINT") + os.getenv("CREATE_HELPER_MAP_DATA_ENDPOINT")
         response = http_helper.send_request(url, method="POST",
@@ -74,7 +72,7 @@ def ValidateCallDataPayload(payload):
     return True
 
 
-def GetFullCallRecords():  # fulldataya bak ?
+def GetFullCallRecords():
     all_call_record_result = cache_service.Get(GLOBALS.CALLER_DATA_CACHE_KEY)
     if all_call_record_result is not None:
         return json.loads(all_call_record_result)
@@ -105,7 +103,6 @@ def GetCallRecords(province=None, district=None, name=None, needs=None, notes=No
     params = __CreateCallParamDict(province, district, name, needs, notes, phone, start_date, end_date)
     if len(params) == 0:
         return json.loads(GetFullCallRecords())
-    # print(params)
     url = os.getenv("API_BASE_ENDPOINT") + os.getenv("API_GET_CALL_MAP_DATA_ENDPOINT")
     call_record_result = http_helper.send_request(url, method="POST", body_params=params)
     call_record_result = call_record_result.json()["detail"]
@@ -118,12 +115,9 @@ def GetHelperRecords(province=None, district=None, name=None, needs=None, notes=
     params = __CreateHelperParamDict(province, district, name, needs, notes, phone, start_date, end_date)
     if len(params) == 0:
         return json.loads(GetFullHelperRecords())
-    # print(params)
     url = os.getenv("API_BASE_ENDPOINT") + os.getenv("API_GET_HELPER_MAP_DATA_ENDPOINT")
-    # print(url)
     call_record_result = http_helper.send_request(url, method="POST", body_params=params)
     call_record_result = call_record_result.json()["detail"]
-    # print(call_record_result)
 
     return call_record_result
 
@@ -159,7 +153,7 @@ Notlar: {rec["notlar"]}
 
 
 def GetRawLocationDataForMap(province=None, district=None, name=None, needs=None, notes=None, start_date=None,
-                             end_date=None, is_first_time = False):
+                             end_date=None, is_first_time=False):
     call_record_result = None
     if is_first_time:
         province = "HATAY"
@@ -174,6 +168,7 @@ def GetRawLocationDataForMap(province=None, district=None, name=None, needs=None
 def GetLatLongsForMap(province=None, district=None, name=None, needs=None, notes=None, start_date=None, end_date=None):
     call_record_result = GetRawLocationDataForMap(province, district, name, needs, notes, start_date, end_date)
     return [[res["lat"], res["lon"]] for res in call_record_result]
+
 
 def __CreateCallParamDict(province, district, name, needs, notes, phone, start_date, end_date):
     return {"il": province, "ilce": district, "gereksinimler": needs, "notlar": notes, "telefon": phone,

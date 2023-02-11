@@ -9,7 +9,6 @@ def GetProvinceDistrictDict():
     return GLOBALS.PROVINCE_DISTRICT_DICT
 
 
-# my_province, my_district, my_open_address, latitude, longitude
 def GetCurrentLocationInfo(address=None, lat_long=None):
     current_location = google_maps_helper.GetLocationInfo(address, lat_long)
     if current_location is None:
@@ -41,8 +40,6 @@ def SetAddressFields(page, current_lat_long=None, current_province=None, current
 
     if current_district is not None:
         ssh.set_session(f"{page}_district", current_district)
-#        current_district_idx = province_district_dict[current_province].index(current_district)
 
-        # ssh.set_session(f"{page}_district_index", current_district_idx)
     if current_address is not None:
         ssh.set_session(f"{page}_address", current_address)
