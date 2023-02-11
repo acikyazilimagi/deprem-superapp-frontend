@@ -96,7 +96,7 @@ def second_page_start_date_filter_changed():
     if session_helper.get_session("second_page_start_date_value") > session_helper.get_session(
             "second_page_end_date_filter"):
         session_helper.set_session("second_page_end_date_value",
-                                   session_helper.get_session("second_page_start_date_value") - timedelta(days=1))
+                                   session_helper.get_session("second_page_start_date_value") + timedelta(days=2))
 
 
 def second_page_end_date_filter_changed():
