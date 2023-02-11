@@ -38,7 +38,7 @@ csv_strings = csv_strings.drop(columns=['_id'])
 csv_strings['gereksinimler'] = csv_strings['gereksinimler'].apply(lambda x: ','.join(map(str, x)))
 csv = io.StringIO(csv_strings.to_csv(index=False))
 b64 = base64.b64encode(csv.getvalue().encode()).decode()
-href = f'<a href="data:file/csv;base64,{b64}" download="myfilename.csv">yardima ihtiyaci olanlar indir</a>'
+href = f'<a href="data:file/csv;base64,{b64}" download="myfilename.csv">Yardım İhityaçları Verisini İndir</a>'
 st.markdown(href, unsafe_allow_html=True)
 
 url2 = os.getenv("API_BASE_ENDPOINT") + os.getenv("API_GET_HELPER_MAP_DATA_ENDPOINT")
@@ -53,5 +53,5 @@ csv_strings2 = csv_strings2.drop(columns=['_id'])
 csv_strings2['servis'] = csv_strings2['servis'].apply(lambda x: ','.join(map(str, x)))
 csv2 = io.StringIO(csv_strings2.to_csv(index=False))
 b642 = base64.b64encode(csv2.getvalue().encode()).decode()
-href2 = f'<a href="data:file/csv;base64,{b642}" download="myfilename.csv">yardim noktalari indir</a>'
+href2 = f'<a href="data:file/csv;base64,{b642}" download="myfilename.csv">Yardım Noktaları Verisini İndir</a>'
 st.markdown(href2, unsafe_allow_html=True)

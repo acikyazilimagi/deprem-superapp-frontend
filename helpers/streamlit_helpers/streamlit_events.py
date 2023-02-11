@@ -193,8 +193,14 @@ def third_page_address_changed():
 def third_page_on_submit_button_click(payload):
     diff_seconds = (datetime.now() - session_helper.get_session("third_page_message_send_date")).total_seconds()
     if diff_seconds > 30:
-        payload["lat"] = session_helper.get_session("third_page_latitude")
-        payload["lon"] = session_helper.get_session("third_page_longitude")
+        if session_helper.get_session("third_page_is_address_autofill") == True:
+            payload["lat"] = session_helper.get_session("third_page_latitude")
+            payload["lon"] = session_helper.get_session("third_page_longitude")
+        else:
+            current_lat_long, _, _, _ = ah.GetCurrentLocationInfo(payload["adres"])
+            payload["lat"] = current_lat_long[0]
+            payload["lon"] = current_lat_long[1]
+            pass
 
         response = record_service.CreateHelperRecord(payload)
 
