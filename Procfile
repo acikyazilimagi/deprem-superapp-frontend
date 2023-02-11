@@ -1,1 +1,1 @@
-web: streamlit run app.py --server.enableCORS false
+web: streamlit run Anasayfa.py --server.enableCORS false
