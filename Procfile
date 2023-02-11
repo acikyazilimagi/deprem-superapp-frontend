@@ -1,1 +1,1 @@
-web: streamlit run Anasayfa.py --server.enableCORS false --server.port ${PORT:-8501}
+web: streamlit run Anasayfa.py --server.port ${PORT:-8501}
