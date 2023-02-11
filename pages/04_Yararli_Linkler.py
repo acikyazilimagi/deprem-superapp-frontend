@@ -1,8 +1,9 @@
 import streamlit as st
 import pandas as pd
 
-st.markdown("""<details>
-    <summary><h3>Kalacak Yerler (Places to Stay Free of Charge)</h3></summary>
+st.markdown(
+    """<details>
+    <summary><h5>Kalacak Yerler (Places to Stay Free of Charge)</h5></summary>
 
 | Yer (Place) | İletişim (Contact) |
 |:-----------|:------------|
@@ -17,26 +18,44 @@ st.markdown("""<details>
 | Otelz | [https://www.otelz.com/tr/gecmisolsunturkiyem](https://www.otelz.com/tr/gecmisolsunturkiyem) |
 | Barınma Alanları (Housing Areas) | [https://www.afetbilgi.com/G%C3%BCvenli%20Toplanma%20Alanlar%C4%B1](https://www.afetbilgi.com/G%C3%BCvenli%20Toplanma%20Alanlar%C4%B1) |
 </details>
+""",
+    unsafe_allow_html=True,
+)
 
+st.markdown("---")
+
+st.markdown(
+    """
 <details>
-    <summary><h3>Ücretsiz Veteriner ve Kedi Evleri Adresleri (Free Vet and Cat House Addresses)</h3></summary>
+    <summary><h5>Ücretsiz Veteriner ve Kedi Evleri Adresleri (Free Vet and Cat House Addresses)</h5></summary>
 
 | Yer (Place) | İletişim (Contact) |
 |:-----------|:------------|
 | Veteriner Listesi (Vet List) | [https://www.google.com/maps/d/u/0/viewer?mid=1quGS8qonhKrGMr0aqfrNvLi9GzvYE0I&ll=38.90781588955668%2C34.55183079999997&z=6](https://www.google.com/maps/d/u/0/viewer?mid=1quGS8qonhKrGMr0aqfrNvLi9GzvYE0I&ll=38.90781588955668%2C34.55183079999997&z=6) |
 </details>
+""",
+    unsafe_allow_html=True,
+)
 
-
+st.markdown(
+    """
 <details>
-    <summary><h3>Kan Bağışı (Blood Donation)</h3></summary>
+    <summary><h5>Kan Bağışı (Blood Donation)</h5></summary>
 
 | Yer (Place) | İletişim (Contact) |
 |:-----------|:------------|
 | Kanver Adresi | [https://kanver.org/KanHizmetleri/KanBagisiNoktalari](https://kanver.org/KanHizmetleri/KanBagisiNoktalari) |
 </details>
+""",
+    unsafe_allow_html=True,
+)
 
+st.markdown("---")
+
+st.markdown(
+    """
 <details>
-    <summary><h3>Deprem Alışverişi (Earthquake Shopping Donation)</h3></summary>
+    <summary><h5>Deprem Alışverişi (Earthquake Shopping Donation)</h5></summary>
 
 | Yer (Place) | İletişim (Contact) |
 |:-----------|:------------|
@@ -49,10 +68,15 @@ st.markdown("""<details>
 | Migros | [https://www.migros.com.tr/](https://www.migros.com.tr/) |
 | Carrefoursa| [https://www.carrefoursa.com/yardimlasmaseferberligi]() |
 </details>
+""",
+    unsafe_allow_html=True,
+)
 
-### Kripto ve IBAN Para Bağışı (Crypto and IBAN Money Donation)
+st.markdown("---")
 
-#### A. International Accounts for Money Transfer
+st.markdown(
+    """
+#### Kripto ve IBAN Para Bağışı (Crypto and IBAN Money Donation)
 
 <details>
     <summary><h5>Governmental and Semi Governmental Organizations (Not Suggested)</h5></summary>
@@ -64,7 +88,12 @@ st.markdown("""<details>
 | [Disaster and Emergency Management Presidency](https://www.afad.gov.tr/depremkampanyasi2) | Türkiye İş Bankası | TR19 0006 4000 0024 2992 5862 85 | TR09 0006 4000 0024 2992 5862 71 || ISBKTRIS | Governmental Organization, widely critized for being slow and not organizing efforts to rescue |
 | [Embassy of the Republic of Turkey](https://www.instagram.com/p/CoU3aBlOM02/) | Bank of America ||| 0019 2343 0455 / ABA: 054001204 | BOFAUS3N | Governmental Organization |
 </details>
+""",
+    unsafe_allow_html=True,
+)
 
+st.markdown(
+    """
 <details> 
     <summary><h5>Non-Governmental Organizations (Suggested)</h5></summary>
 
@@ -75,9 +104,14 @@ st.markdown("""<details>
 | [AKUT - Arama Kurtarma Derneği](https://www.akut.org.tr/en/about-akut) | QNB Finansbank | TR66 0011 1000 0000 0032 4941 26 | TR82 0011 1000 0000 0032 4941 29 || FNNBTRIS | NGO, Search and Rescue focus |
 | [Bündnis Entwicklung Hilft (BEH) & Aktion Deutschland Hilft (ADH)](https://www.spendenkonto-nothilfe.de/) | Commerzbank | DE53 200 400 600 200 400 600 ||| COBADEFF | NGO, see website for alternative payment options (German) |
 </details>
+""",
+    unsafe_allow_html=True,
+)
 
+st.markdown(
+    """
 <details>
-<summary><h4>B. International Funds or Organizations</h4></summary>
+<summary><h5>B. International Funds or Organizations</h5></summary>
 
 | Organization / Charity | Link | Credit Card | Paypal | Alternative Payment | Info | Extra Info |
 |:-----------|:------------|:------------|:------------|:------------|:------------|:------------|
@@ -104,17 +138,29 @@ st.markdown("""<details>
 | International Development and Relief Foundation | [IDRF.ca Donate](https://idrf.ca/project/turkiye-and-syria-earthquake-relief/) | Yes ||| NGO | Canada |
 | Molham Volunteering Team | [Campaign Donate](https://molhamteam.com/en/campaigns/439) | Yes ||| NGO | Jordan |
 </details>
+""",
+    unsafe_allow_html=True,
+)
 
+st.markdown(
+    """
 <details>
-    <summary><h4> C. Cryptocoin Donations</h4></summary>
+    <summary><h5> C. Cryptocoin Donations</h5></summary>
 
 | Organization / Charity | ERC20 Wallet | BEP20 Wallet | Avalanche Wallet | Info |
 |:-----------|:------------|:------------|:------------|:------------|
 | [Ahbap](https://twitter.com/haluklevent/status/1622926244512661504?s=20) | 0xe1935271D1993434A1a59fE08f24891Dc5F398Cd | 0xB67705398fEd380a1CE02e77095fed64f8aCe463 | 0x868D27c361682462536DfE361f2e20B3A6f4dDD8 | NGO, focuses on humanitarian aid |
 </details>
+""",
+    unsafe_allow_html=True,
+)
 
+st.markdown("---")
+
+st.markdown(
+    """
 <details>
-    <summary><h3>A. Bağış Yapılabilecek Banka Hesapları</h3></summary>
+    <summary><h5>A. Bağış Yapılabilecek Banka Hesapları</h5></summary>
 
 | Organizasyon | Banka | IBAN | İnternet Sitesi Üzerinden |
 |:-----------|:------------|:------------|:------------|
@@ -123,9 +169,14 @@ st.markdown("""<details>
 | Ahbap Derneği | Türkiye İş Bankası | TR12 0006 4000 0011 0211 3800 59 | [https://ahbap.org/bagisci-ol](https://ahbap.org/bagisci-ol) |
 | AKUT | Türkiye İş Bankası | TR14 0006 4000 0011 0800 6666 63 | [https://www.akut.org.tr/bagis-yap](https://www.akut.org.tr/bagis-yap) |
 </details>
+""",
+    unsafe_allow_html=True,
+)
 
+st.markdown(
+    """
 <details>
-    <summary><h4>B. Maddi Bağış Yapılabilecek Alternatif Yollar</h4></summary>
+    <summary><h5>B. Maddi Bağış Yapılabilecek Alternatif Yollar</h5></summary>
 
 | Organizasyon | Link | Bilgi |
 |:-----------|:------------|:------------|
@@ -140,10 +191,16 @@ st.markdown("""<details>
 | HepsiBurada Hediye Kartları | [https://www.hepsiburada.com/kampanyalar/deprem-yardim-kartlari](https://www.hepsiburada.com/kampanyalar/deprem-yardim-kartlari) | Özel Şirket + NGO İşbirliği |
 | Gıda Bağışı (Esnaf, Restoran, Bakkal vb.) | [https://docs.google.com/forms/d/e/1FAIpQLSdi_oW8eTwkHHRjDBxwX36t8hxcrA8Jjx8fag-xQzXhd9iwfg/viewform](https://docs.google.com/forms/d/e/1FAIpQLSdi_oW8eTwkHHRjDBxwX36t8hxcrA8Jjx8fag-xQzXhd9iwfg/viewform) | Gönüllü Listesi |
 </details>
+""",
+    unsafe_allow_html=True,
+)
 
+st.markdown("---")
 
+st.markdown(
+    """
 <details>
-    <summary><h4>C. İlgili Bağlantılar</h4></summary>
+    <summary><h5>C. İlgili Bağlantılar</h5></summary>
 
 | Organizasyon | Amaç | Anahtar Kelime |
 | --- | --- | --- |
@@ -158,9 +215,14 @@ st.markdown("""<details>
 | [Deprem Yardım Link Arşivi](https://linkstap.com/depremyardim) | Çok amaçlı link arşivi | - |
 | [Deprem Haritası (Basarsoft)](https://deprem.basarsoft.com.tr/V2) | Afet haritası | Harita, Yardım Talebi, Yardım Sağlama |
 </details>
+""",
+    unsafe_allow_html=True,
+)
 
+st.markdown(
+    """
 <details>
-    <summary><h3>SOCAR Petrol İstasyonları</h3></summary>
+    <summary><h5>SOCAR Petrol İstasyonları</h5></summary>
 
 | İl | İlçe | Kısa Ad | Tesis Adresi | TELEFON | KONUM |
 |----|------|---------|--------------|---------|-------|
@@ -184,4 +246,7 @@ st.markdown("""<details>
 | ŞANLIURFA | HALFETİ | ACARPET AKARYAKIT | Yukarıgöklü Mahallesi Sağlık Ocağı Caddesi No:53 ( Ada: - , Pafta: - , Parsel:1700 ) | 0542 462 63 22 | [Harita](https://goo.gl/maps/CFSFJCizPTQNxFkd7) |
 | ŞANLIURFA | HİLVAN | ÇAKMAKTEKSTİL | Yeni Mahallesi ( Ada: - , Pafta: - , Parsel: - ) | 0533 243 99 31 | [Harita](https://goo.gl/maps/dr9fRHjX9cTNApyq6) |
 </details>
-""")
+""",
+    unsafe_allow_html=True,
+)
+
