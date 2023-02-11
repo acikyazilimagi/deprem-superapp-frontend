@@ -1,6 +1,22 @@
-import os
-
 PROVINCE_DISTRICT_DICT = {
+    "HATAY": ["ALTINÖZÜ", "ANTAKYA", "ARSUZ", "BELEN", "DEFNE", "DÖRTYOL", "ERZİN", "HASSA", "İSKENDERUN", "KIRIKHAN",
+              "KUMLU", "PAYAS", "REYHANLI", "SAMANDAĞ", "YAYLADAĞI"],
+    "KAHRAMANMARAŞ": ["AFŞİN", "ANDIRIN", "ÇAĞLAYANCERİT", "DULKADİROĞLU", "EKİNÖZÜ", "ELBİSTAN", "GÖKSUN", "NURHAK",
+                      "ONİKİŞUBAT", "PAZARCIK", "TÜRKOĞLU"],
+    "OSMANİYE": ["BAHÇE", "DÜZİÇİ", "HASANBEYLİ", "KADİRLİ", "MERKEZ", "SUMBAS", "TOPRAKKALE"],
+    "ADIYAMAN": ["BESNİ", "ÇELİKHAN", "GERGER", "GÖLBAŞI", "KAHTA", "MERKEZ", "SAMSAT", "SİNCİK", "TUT"],
+    "ADANA": ["ALADAĞ", "CEYHAN", "ÇUKUROVA", "FEKE", "İMAMOĞLU", "KARAİSALI", "KARATAŞ", "KOZAN", "POZANTI",
+              "SAİMBEYLİ", "SARIÇAM", "SEYHAN", "TUFANBEYLİ", "YUMURTALIK", "YÜREĞİR"],
+    "ŞANLIURFA": ["AKÇAKALE", "BİRECİK", "BOZOVA", "CEYLANPINAR", "EYYÜBİYE", "HALFETİ", "HALİLİYE", "HARRAN", "HİLVAN",
+                  "KARAKÖPRÜ", "SİVEREK", "SURUÇ", "VİRANŞEHİR"],
+    "GAZİANTEP": ["ARABAN", "İSLAHİYE", "KARKAMIŞ", "NİZİP", "NURDAĞI", "OĞUZELİ", "ŞAHİNBEY", "ŞEHİTKAMİL",
+                  "YAVUZELİ"],
+    "KONYA": ["AHIRLI", "AKÖREN", "AKŞEHİR", "ALTINEKİN", "BEYŞEHİR", "BOZKIR", "CİHANBEYLİ", "ÇELTİK", "ÇUMRA",
+              "DERBENT", "DEREBUCAK", "DOĞANHİSAR", "EMİRGAZİ", "EREĞLİ", "GÜNEYSINIR", "HADİM", "HALKAPINAR", "HÜYÜK",
+              "ILGIN", "KADINHANI", "KARAPINAR", "KARATAY", "KULU", "MERAM", "SARAYÖNÜ", "SELÇUKLU", "SEYDİŞEHİR",
+              "TAŞKENT", "TUZLUKÇU", "YALIHÜYÜK", "YUNAK"],
+    "KAYSERİ": ["AKKIŞLA", "BÜNYAN", "DEVELİ", "FELAHİYE", "HACILAR", "İNCESU", "KOCASİNAN", "MELİKGAZİ", "ÖZVATAN",
+                "PINARBAŞI", "SARIOĞLAN", "SARIZ", "TALAS", "TOMARZA", "YAHYALI", "YEŞİLHİSAR"],
     "AFYON": ["BAŞMAKÇI", "BAYAT", "BOLVADİN", "ÇAY", "ÇOBANLAR", "DAZKIRI", "DİNAR", "EMİRDAĞ", "EVCİLER", "HOCALAR",
               "İHSANİYE", "İSCEHİSAR", "KIZILÖREN", "MERKEZ", "SANDIKLI", "SİNANPAŞA", "SULTANDAĞI", "ŞUHUT"],
     "AĞRI": ["DİYADİN", "DOĞUBAYAZIT", "ELEŞKİRT", "HAMUR", "MERKEZ", "PATNOS", "TAŞLIÇAY", "TUTAK"],
@@ -63,18 +79,12 @@ PROVINCE_DISTRICT_DICT = {
     "KASTAMONU": ["ABANA", "AĞLI", "ARAÇ", "AZDAVAY", "BOZKURT", "CİDE", "ÇATALZEYTİN", "DADAY", "DEVREKANİ",
                   "DOĞANYURT", "HANÖNÜ", "İHSANGAZİ", "İNEBOLU", "KÜRE", "MERKEZ", "PINARBAŞI", "SEYDİLER", "ŞENPAZAR",
                   "TAŞKÖPRÜ", "TOSYA"],
-    "KAYSERİ": ["AKKIŞLA", "BÜNYAN", "DEVELİ", "FELAHİYE", "HACILAR", "İNCESU", "KOCASİNAN", "MELİKGAZİ", "ÖZVATAN",
-                "PINARBAŞI", "SARIOĞLAN", "SARIZ", "TALAS", "TOMARZA", "YAHYALI", "YEŞİLHİSAR"],
     "KIRIKKALE": ["BAHŞILI", "BALIŞEYH", "ÇELEBİ", "DELİCE", "KARAKEÇİLİ", "KESKİN", "MERKEZ", "SULAKYURT", "YAHŞİHAN"],
     "KIRKLARELİ": ["BABAESKİ", "DEMİRKÖY", "KOFÇAZ", "LÜLEBURGAZ", "MERKEZ", "PEHLİVANKÖY", "PINARHİSAR", "VİZE"],
     "KIRŞEHİR": ["AKÇAKENT", "AKPINAR", "BOZTEPE", "ÇİÇEKDAĞI", "KAMAN", "MERKEZ", "MUCUR"],
     "KİLİS": ["ELBEYLİ", "MERKEZ", "MUSABEYLİ", "POLATELİ"],
     "KOCAELİ": ["BAŞİSKELE", "ÇAYIROVA", "DARICA", "DERİNCE", "DİLOVASI", "GEBZE", "GÖLCÜK", "İZMİT", "KANDIRA",
                 "KARAMÜRSEL", "KARTEPE", "KÖRFEZ"],
-    "KONYA": ["AHIRLI", "AKÖREN", "AKŞEHİR", "ALTINEKİN", "BEYŞEHİR", "BOZKIR", "CİHANBEYLİ", "ÇELTİK", "ÇUMRA",
-              "DERBENT", "DEREBUCAK", "DOĞANHİSAR", "EMİRGAZİ", "EREĞLİ", "GÜNEYSINIR", "HADİM", "HALKAPINAR", "HÜYÜK",
-              "ILGIN", "KADINHANI", "KARAPINAR", "KARATAY", "KULU", "MERAM", "SARAYÖNÜ", "SELÇUKLU", "SEYDİŞEHİR",
-              "TAŞKENT", "TUZLUKÇU", "YALIHÜYÜK", "YUNAK"],
     "KÜTAHYA": ["ALTINTAŞ", "ASLANAPA", "ÇAVDARHİSAR", "DOMANİÇ", "DUMLUPINAR", "EMET", "GEDİZ", "HİSARCIK", "MERKEZ",
                 "PAZARLAR", "SİMAV", "ŞAPHANE", "TAVŞANLI"],
     "MANİSA": ["AHMETLİ", "AKHİSAR", "ALAŞEHİR", "DEMİRCİ", "GÖLMARMARA", "GÖRDES", "KIRKAĞAÇ", "KÖPRÜBAŞI", "KULA",
@@ -90,7 +100,6 @@ PROVINCE_DISTRICT_DICT = {
     "NİĞDE": ["ALTUNHİSAR", "BOR", "ÇAMARDI", "ÇİFTLİK", "MERKEZ", "ULUKIŞLA"],
     "ORDU": ["AKKUŞ", "ALTINORDU", "AYBASTI", "ÇAMAŞ", "ÇATALPINAR", "ÇAYBAŞI", "FATSA", "GÖLKÖY", "GÜLYALI",
              "GÜRGENTEPE", "İKİZCE", "KABADÜZ", "KABATAŞ", "KORGAN", "KUMRU", "MESUDİYE", "PERŞEMBE", "ULUBEY", "ÜNYE"],
-    "OSMANİYE": ["BAHÇE", "DÜZİÇİ", "HASANBEYLİ", "KADİRLİ", "MERKEZ", "SUMBAS", "TOPRAKKALE"],
     "RİZE": ["ARDEŞEN", "ÇAMLIHEMŞİN", "ÇAYELİ", "DEREPAZARI", "FINDIKLI", "GÜNEYSU", "HEMŞİN", "İKİZDERE", "İYİDERE",
              "KALKANDERE", "MERKEZ", "PAZAR"],
     "GİRESUN": ["ALUCRA", "BULANCAK", "ÇAMOLUK", "ÇANAKÇI", "DERELİ", "DOĞANKENT", "ESPİYE", "EYNESİL", "GÖRELE",
@@ -104,8 +113,8 @@ PROVINCE_DISTRICT_DICT = {
     "SİVAS": ["AKINCILAR", "ALTINYAYLA", "DİVRİĞİ", "DOĞANŞAR", "GEMEREK", "GÖLOVA", "GÜRÜN", "HAFİK", "İMRANLI",
               "KANGAL", "KOYULHİSAR", "MERKEZ", "SUŞEHRİ", "ŞARKIŞLA", "ULAŞ", "YILDIZELİ", "ZARA"],
     "ŞIRNAK": ["BEYTÜŞŞEBAP", "CİZRE", "GÜÇLÜKONAK", "İDİL", "MERKEZ", "SİLOPİ", "ULUDERE"],
-    "TEKİRDAĞ": ["ÇERKEZKÖY", "ÇORLU", "ERGENE", "HAYRABOLU", "KAPAKLI", "MALKARA", "MARMARAEREĞLİSİ", "MURATLI",
-                 "SARAY", "SÜLEYMANPAŞA", "ŞARKÖY"],
+    "TEKİRDAĞ": ["MERKEZ", "ÇERKEZKÖY", "ÇORLU", "ERGENE", "HAYRABOLU", "KAPAKLI", "MALKARA", "MARMARAEREĞLİSİ",
+                 "MURATLI", "SARAY", "SÜLEYMANPAŞA", "ŞARKÖY"],
     "TOKAT": ["ALMUS", "ARTOVA", "BAŞÇİFTLİK", "ERBAA", "MERKEZ", "NİKSAR", "PAZAR", "REŞADİYE", "SULUSARAY", "TURHAL",
               "YEŞİLYURT", "ZİLE"],
     "TRABZON": ["AKÇAABAT", "ARAKLI", "ARSİN", "BEŞİKDÜZÜ", "ÇARŞIBAŞI", "ÇAYKARA", "DERNEKPAZARI", "DÜZKÖY", "HAYRAT",
@@ -118,21 +127,11 @@ PROVINCE_DISTRICT_DICT = {
     "YOZGAT": ["AKDAĞMADENİ", "AYDINCIK", "BOĞAZLIYAN", "ÇANDIR", "ÇAYIRALAN", "ÇEKEREK", "KADIŞEHRİ", "MERKEZ",
                "SARAYKENT", "SARIKAYA", "SORGUN", "ŞEFAATLİ", "YENİFAKILI", "YERKÖY"],
     "ZONGULDAK": ["ALAPLI", "ÇAYCUMA", "DEVREK", "EREĞLİ", "GÖKÇEBEY", "KİLİMLİ", "KOZLU", "MERKEZ"],
-    "ADANA": ["ALADAĞ", "CEYHAN", "ÇUKUROVA", "FEKE", "İMAMOĞLU", "KARAİSALI", "KARATAŞ", "KOZAN", "POZANTI",
-              "SAİMBEYLİ", "SARIÇAM", "SEYHAN", "TUFANBEYLİ", "YUMURTALIK", "YÜREĞİR"],
-    "ADIYAMAN": ["BESNİ", "ÇELİKHAN", "GERGER", "GÖLBAŞI", "KAHTA", "MERKEZ", "SAMSAT", "SİNCİK", "TUT"],
-    "ŞANLIURFA": ["AKÇAKALE", "BİRECİK", "BOZOVA", "CEYLANPINAR", "EYYÜBİYE", "HALFETİ", "HALİLİYE", "HARRAN", "HİLVAN",
-                  "KARAKÖPRÜ", "SİVEREK", "SURUÇ", "VİRANŞEHİR"],
-    "HATAY": ["ALTINÖZÜ", "ANTAKYA", "ARSUZ", "BELEN", "DEFNE", "DÖRTYOL", "ERZİN", "HASSA", "İSKENDERUN", "KIRIKHAN",
-              "KUMLU", "PAYAS", "REYHANLI", "SAMANDAĞ", "YAYLADAĞI"],
+
     "SAKARYA": ["ADAPAZARI", "AKYAZI", "ARİFİYE", "ERENLER", "FERİZLİ", "GEYVE", "HENDEK", "KARAPÜRÇEK", "KARASU",
                 "KAYNARCA", "KOCAALİ", "PAMUKOVA", "SAPANCA", "SERDİVAN", "SÖĞÜTLÜ", "TARAKLI"],
     "MALATYA": ["AKÇADAĞ", "ARAPGİR", "ARGUVAN", "BATTALGAZİ", "DARENDE", "DOĞANŞEHİR", "DOĞANYOL", "HEKİMHAN", "KALE",
                 "KULUNCAK", "PÜTÜRGE", "YAZIHAN", "YEŞİLYURT"],
-    "KAHRAMANMARAŞ": ["AFŞİN", "ANDIRIN", "ÇAĞLAYANCERİT", "DULKADİROĞLU", "EKİNÖZÜ", "ELBİSTAN", "GÖKSUN", "NURHAK",
-                      "ONİKİŞUBAT", "PAZARCIK", "TÜRKOĞLU"],
-    "GAZİANTEP": ["ARABAN", "İSLAHİYE", "KARKAMIŞ", "NİZİP", "NURDAĞI", "OĞUZELİ", "ŞAHİNBEY", "ŞEHİTKAMİL",
-                  "YAVUZELİ"],
     "DİYARBAKIR": ["BAĞLAR", "BİSMİL", "ÇERMİK", "ÇINAR", "ÇÜNGÜŞ", "DİCLE", "EĞİL", "ERGANİ", "HANİ", "HAZRO",
                    "KAYAPINAR", "KOCAKÖY", "KULP", "LİCE", "SİLVAN", "SUR", "YENİŞEHİR"]}
 
@@ -141,7 +140,11 @@ HELPER_DATA_CACHE_KEY = "HELPER_DATA"
 NEEDS = ['Göçük Altındayım', 'İlaç', 'Malzeme ulaşımı', 'Hastane', 'Konaklama', 'Elektrik', 'Yemek', 'Erzak',
          'Deprem alanıdan ayrılma',
          'Yardim tırı', 'Barınma', 'Yakıt', 'Ulaşım', 'Pet nakil', 'İş makinesi operatörü', 'Vinç operatörü',
+<<<<<<< Updated upstream
          'Araç yardımı', 'Giyim', 'Diğer',"Güvenlik","Ekip","Teçhizat","Battaniye","Isınma","Kefen","Kişisel bakım","Çadır"]
+=======
+         'Araç yardımı', 'Giyim', 'Diğer', "Güvenlik", "Ekip"]
+>>>>>>> Stashed changes
 icon_map = {
     'Çadır': '🏕️',
     'Battaniye': '🛏️',
@@ -171,21 +174,30 @@ icon_map = {
     'Temizlik': '🧼',
     'Yakıt': '🛢️',
     'Ulaşım': '🚕',
-    'Pet':'🐶',
-    'Nöbetçi Eczane':'🇨🇭',
+    'Pet': '🐶',
+    'Nöbetçi Eczane': '🇨🇭',
     'Pet nakil': '🐶',
     'İş makinesi operatörü': '💼',
     'Vinç': '🏗️',
+<<<<<<< Updated upstream
     'Vinç operatörü':'🏗️',
     'Araç Yardımı':'🚚',
+=======
+    'Araç Yardımı': '🚚',
+>>>>>>> Stashed changes
     'Araç yardımı': '🚚',
     'Giyim': '👕',
-    'Giysi':'👕',
+    'Giysi': '👕',
     'Diğer': '📌',
+<<<<<<< Updated upstream
     'Deprem alanıdan ayrılma':'🚚',
     'Güvenlik':'🚨',
     'Ekip':'⛑️'
+=======
+    'Güvenlik': '🚨',
+    'Ekip': '⛑️'
+>>>>>>> Stashed changes
 }
 PAGE_SIZE = 30
-CALLER_MAP_HEADER="YARDIM ÇAĞRILARI"
-HELPER_MAP_HEADER="YARDIM NOKTALARI"
+CALLER_MAP_HEADER = "YARDIM ÇAĞRILARI"
+HELPER_MAP_HEADER = "YARDIM NOKTALARI"
