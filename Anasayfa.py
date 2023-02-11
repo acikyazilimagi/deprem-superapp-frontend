@@ -46,7 +46,7 @@ def first_page():
         label="Adres [ZORUNLU]", key='first_page_address', on_change=se.first_page_address_changed
     )
 
-    st.checkbox(label="Adresi benim için otomatik doldur", key="first_page_is_address_autofill", value=True)
+    st.checkbox(label="Adresi benim için otomatik doldur", key="first_page_is_address_autofill", value=False)
 
     payload["isim"] = st.text_input(
         label="İsim [ZORUNLU]"

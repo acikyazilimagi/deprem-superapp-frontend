@@ -41,7 +41,7 @@ def third_page():
         label="Adres [ZORUNLU]", key='third_page_address', on_change=se.third_page_address_changed
     )
 
-    st.checkbox(label="Adresi benim için otomatik doldur", key="third_page_is_address_autofill", value=True)
+    st.checkbox(label="Adresi benim için otomatik doldur", key="third_page_is_address_autofill", value=False)
 
     third_page_payload["isim"] = st.text_input(
         label="İsim [ZORUNLU]"
