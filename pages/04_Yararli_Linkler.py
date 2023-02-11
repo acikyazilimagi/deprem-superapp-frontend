@@ -24,16 +24,17 @@ st.markdown(
 st.markdown("---")
 
 st.markdown(
-    """
+"""
+
 <details>
     <summary><h5>Ücretsiz Veteriner ve Kedi Evleri Adresleri (Free Vet and Cat House Addresses)</h5></summary>
-
-| Yer (Place) | İletişim (Contact) |
-|:-----------|:------------|
-| Veteriner Listesi (Vet List) | [https://www.google.com/maps/d/u/0/viewer?mid=1quGS8qonhKrGMr0aqfrNvLi9GzvYE0I&ll=38.90781588955668%2C34.55183079999997&z=6](https://www.google.com/maps/d/u/0/viewer?mid=1quGS8qonhKrGMr0aqfrNvLi9GzvYE0I&ll=38.90781588955668%2C34.55183079999997&z=6) |
+Yer (Place)	İletişim (Contact)
+Veteriner Listesi (Vet List)	https://www.google.com/maps/d/u/0/viewer?mid=1quGS8qonhKrGMr0aqfrNvLi9GzvYE0I&ll=38.90781588955668%2C34.55183079999997&z=6
 </details>
+<br>
+For further information and assistance, you can visit the https://ebasvuru.afad.gov.tr/ .
 """,
-    unsafe_allow_html=True,
+unsafe_allow_html=True,
 )
 
 st.markdown(
