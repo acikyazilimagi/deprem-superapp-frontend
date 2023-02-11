@@ -182,6 +182,7 @@ icon_map = {
     'Giyim': '👕',
     'Giysi':'👕',
     'Diğer': '📌',
+    'Deprem alanıdan ayrılma':'🚚',
     'Güvenlik':'🚨',
     'Ekip':'⛑️'
 }
