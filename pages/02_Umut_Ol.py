@@ -34,8 +34,8 @@ def third_page():
 
     third_page_payload["servis"] = st.multiselect(
         'Şu Konularda Yardım Edebilirim:',
-        GLOBALS.NEEDS,
-        GLOBALS.NEEDS[0])
+        GLOBALS.NEEDS[1:],
+        GLOBALS.NEEDS[1:][0])
 
     third_page_payload["adres"] = st.text_area(
         label="Adres [ZORUNLU]", key='third_page_address', on_change=se.third_page_address_changed

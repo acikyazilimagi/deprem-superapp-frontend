@@ -29,6 +29,7 @@ KVKK
 url = os.getenv("API_BASE_ENDPOINT") + os.getenv("API_GET_CALL_MAP_DATA_ENDPOINT")
 response = http_helper.send_request(url, method="POST", body_params={})
 
+"""
 data = response.json()
 df = pd.DataFrame(data)
 csv_string = df.to_csv(index=False)
@@ -38,7 +39,7 @@ csv_strings = csv_strings.drop(columns=['_id'])
 csv_strings['gereksinimler'] = csv_strings['gereksinimler'].apply(lambda x: ','.join(map(str, x)))
 csv = io.StringIO(csv_strings.to_csv(index=False))
 b64 = base64.b64encode(csv.getvalue().encode()).decode()
-href = f'<a href="data:file/csv;base64,{b64}" download="myfilename.csv">Yardım İhityaçları Verisini İndir</a>'
+href = f'<a href="data:file/csv;base64,{b64}" download="myfilename.csv">Yardım İhtiyaçları Verisini İndir</a>'
 st.markdown(href, unsafe_allow_html=True)
 
 url2 = os.getenv("API_BASE_ENDPOINT") + os.getenv("API_GET_HELPER_MAP_DATA_ENDPOINT")
@@ -55,3 +56,4 @@ csv2 = io.StringIO(csv_strings2.to_csv(index=False))
 b642 = base64.b64encode(csv2.getvalue().encode()).decode()
 href2 = f'<a href="data:file/csv;base64,{b642}" download="myfilename.csv">Yardım Noktaları Verisini İndir</a>'
 st.markdown(href2, unsafe_allow_html=True)
+"""

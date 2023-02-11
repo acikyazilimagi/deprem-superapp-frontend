@@ -138,7 +138,7 @@ PROVINCE_DISTRICT_DICT = {
 CALLER_DATA_CACHE_KEY = "CALLER_DATA"
 HELPER_DATA_CACHE_KEY = "HELPER_DATA"
 NEEDS = ['Göçük Altındayım', 'İlaç', 'Malzeme ulaşımı', 'Hastane', 'Konaklama', 'Elektrik', 'Yemek', 'Erzak',
-         'Deprem alanıdan ayrılma',
+         'Deprem alanından ayrılma',
          'Yardim tırı', 'Barınma', 'Yakıt', 'Ulaşım', 'Pet nakil', 'İş makinesi operatörü', 'Vinç operatörü',
          'Araç yardımı', 'Giyim', 'Diğer',"Güvenlik","Ekip","Teçhizat","Battaniye","Isınma","Kefen","Kişisel bakım","Çadır","Çocuk ihtiyacı"]
 icon_map = {
