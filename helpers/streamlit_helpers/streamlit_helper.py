@@ -89,7 +89,7 @@ def SetInitialStreamlitStates(sections):
 
         if 'second_page_selectable_districts' not in st.session_state:
             ssh.set_session("second_page_selectable_districts",
-                            ["TÜMÜ"] + province_district_dict["HATAY"])
+                            ["TÜMÜ"])
 
         if 'second_page_start_date_value' not in st.session_state:
             ssh.set_session("second_page_start_date_value", datetime.today())
