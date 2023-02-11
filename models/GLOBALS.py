@@ -180,8 +180,8 @@ icon_map = {
     'Araç yardımı': '🚚',
     'Giyim': '👕',
     'Giysi':'👕',
-    'Diğer': '📌'
-    'Güvenlik':'🚨'
+    'Diğer': '📌',
+    'Güvenlik':'🚨',
     'Ekip':'⛑️'
 }
 PAGE_SIZE = 30
