@@ -176,6 +176,7 @@ icon_map = {
     'Pet nakil': '🐶',
     'İş makinesi operatörü': '💼',
     'Vinç': '🏗️',
+    'Vinç operatörü':'🏗️',
     'Araç Yardımı':'🚚',
     'Araç yardımı': '🚚',
     'Giyim': '👕',
