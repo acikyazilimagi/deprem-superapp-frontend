@@ -140,11 +140,7 @@ HELPER_DATA_CACHE_KEY = "HELPER_DATA"
 NEEDS = ['Göçük Altındayım', 'İlaç', 'Malzeme ulaşımı', 'Hastane', 'Konaklama', 'Elektrik', 'Yemek', 'Erzak',
          'Deprem alanıdan ayrılma',
          'Yardim tırı', 'Barınma', 'Yakıt', 'Ulaşım', 'Pet nakil', 'İş makinesi operatörü', 'Vinç operatörü',
-<<<<<<< Updated upstream
          'Araç yardımı', 'Giyim', 'Diğer',"Güvenlik","Ekip","Teçhizat","Battaniye","Isınma","Kefen","Kişisel bakım","Çadır"]
-=======
-         'Araç yardımı', 'Giyim', 'Diğer', "Güvenlik", "Ekip"]
->>>>>>> Stashed changes
 icon_map = {
     'Çadır': '🏕️',
     'Battaniye': '🛏️',
@@ -179,24 +175,15 @@ icon_map = {
     'Pet nakil': '🐶',
     'İş makinesi operatörü': '💼',
     'Vinç': '🏗️',
-<<<<<<< Updated upstream
     'Vinç operatörü':'🏗️',
     'Araç Yardımı':'🚚',
-=======
-    'Araç Yardımı': '🚚',
->>>>>>> Stashed changes
     'Araç yardımı': '🚚',
     'Giyim': '👕',
     'Giysi': '👕',
     'Diğer': '📌',
-<<<<<<< Updated upstream
     'Deprem alanıdan ayrılma':'🚚',
     'Güvenlik':'🚨',
     'Ekip':'⛑️'
-=======
-    'Güvenlik': '🚨',
-    'Ekip': '⛑️'
->>>>>>> Stashed changes
 }
 PAGE_SIZE = 30
 CALLER_MAP_HEADER = "YARDIM ÇAĞRILARI"
