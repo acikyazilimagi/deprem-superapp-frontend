@@ -120,7 +120,7 @@ def CreateMultiMarkerMap(raw_data=None):
             icon_list = [x+" "+icon_map[x]+" " for x in raw_data[i][a]]
 
             # add hover text
-            icon_person = folium.Icon(icon='person', prefix='fa',color='red')
+            icon_person = folium.Icon(icon='user', prefix='fa',color='red')
             icon_house = folium.Icon(icon='home', prefix='fa')
             if a == "gereksinimler":
                 folium.Marker([lat, lon], popup=popup_html_table,tooltip="<span style='font-size:16px'><strong>İhtiyaçlar:</strong>"+" ".join(icon_list)+"</span>",icon=icon_person,icon_size=(30,30)).add_to(m)
