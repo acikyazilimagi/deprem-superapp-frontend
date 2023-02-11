@@ -153,6 +153,7 @@ icon_map = {
     'Operatör': '💼',
     'İlaç': '💊',
     'Isınma': '🔥',
+    'Araç yardımı':'🚚',
     'Malzeme ulaşımı': '🚚',
     'Hastane': '🏥',
     'Konaklama': '🏠',
