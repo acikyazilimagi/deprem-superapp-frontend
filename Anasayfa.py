@@ -72,4 +72,4 @@ def first_page():
         st.error(session_helper.get_session("first_page_error_message"), icon="🚨")
 
 
-first_page()
+
