@@ -67,4 +67,3 @@ def second_page():
         cols[i].button(str(i + 1), on_click=se.second_page_pager_button_click, args=(i,))
 
 
-second_page()
