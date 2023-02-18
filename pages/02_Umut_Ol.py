@@ -66,5 +66,5 @@ def third_page():
     if session_helper.get_session("third_page_is_error"):
         st.error(session_helper.get_session("third_page_error_message"), icon="🚨")
 
-
+third_page()
 
